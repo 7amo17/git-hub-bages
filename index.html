@@ -1,50 +1,222 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حمو - الصفحة الشخصية</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            text-align: center;
-            padding: 50px;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            width: 50%;
-            margin: 0 auto;
-        }
-        h1 {
-            color: #007BFF;
-        }
-        p {
-            font-size: 18px;
-        }
-        .info {
-            margin-top: 20px;
-            font-size: 20px;
-            color: #555;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>حمو - بطاقة تعريف</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: black;
+      color: white;
+      font-family: "Arial", sans-serif;
+      overflow: hidden;
+    }
+
+    #starfield {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+    }
+
+    .container {
+      position: relative;
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 40px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    /* صورة اللوجو */
+    .logo-container {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 30px;
+    }
+    .logo-circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #4CAF50;
+      box-shadow: 0 0 15px #4CAF50;
+    }
+    .logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .orbit {
+      position: absolute;
+      border: 2px dashed rgba(76,175,80,0.5);
+      border-radius: 50%;
+      animation: rotate 10s linear infinite;
+    }
+    .orbit1 { width: 200px; height: 200px; top: -25px; left: -25px; }
+    .orbit2 { width: 250px; height: 250px; top: -50px; left: -50px; animation-duration: 14s; }
+    .orbit3 { width: 300px; height: 300px; top: -75px; left: -75px; animation-duration: 18s; }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* دوائر متحركة حوالين النص */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(76, 175, 80, 0.3);
+      animation: float 8s infinite ease-in-out;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) scale(1); opacity: 0.7; }
+      50% { transform: translateY(-40px) scale(1.2); opacity: 1; }
+      100% { transform: translateY(0px) scale(1); opacity: 0.7; }
+    }
+
+    h1, h2, h3, p, .links, .btn-wrapper {
+      position: relative;
+      margin-bottom: 20px;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #4CAF50;
+      box-shadow: 0 0 8px #4CAF50;
+      z-index: 1;
+    }
+
+    .links a {
+      display: block;
+      color: #4CAF50;
+      margin-top: 5px;
+      text-decoration: none;
+    }
+
+    .btn-wrapper {
+      color: #4CAF50;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .btn-wrapper:hover {
+      background: #4CAF50;
+      color: black;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>أهلاً بيك في صفحة حمو</h1>
-        <p>هذه صفحة تعريفية عن حمو.</p>
-        <div class="info">
-            <p><strong>الاسم:</strong> حمو</p>
-            <p><strong>الهوايات:</strong> البرمجة، تطوير الألعاب، تعلم اللغات</p>
-            <p><strong>الهدف:</strong> تحسين مهارات البرمجة، تصميم ألعاب مبتكرة، تعلم الإنجليزية</p>
-            <p><strong>المجالات المهتم بها:</strong> الذكاء الاصطناعي، البرمجة بلغة C++، السوشيال ميديا</p>
-        </div>
+<canvas id="starfield"></canvas>
+
+<div class="container">
+  <!-- لوجو مع دوائر -->
+  <div class="logo-container">
+    <div class="orbit orbit1"></div>
+    <div class="orbit orbit2"></div>
+    <div class="orbit orbit3"></div>
+    <div class="logo-circle">
+      <img src="Kuni_1744956140554.jpg" alt="شعار حمو" />
     </div>
+  </div>
+
+  <h1>حمو</h1>
+  <h2>شعار حمو</h2>
+  <h3>Hamo</h3>
+  <p>حمو، مطور محترف ومصمم مبدع، بخبرة في البرمجة والتقنية وصناعة الأدوات الذكية للموبايل والسوشيال ميديا.</p>
+
+  <div class="links">
+    <a href="https://wa.me/201007671490">واتساب: 01007671490</a>
+    <a href="https://wa.me/201020534772">واتساب: 01020534772</a>
+  </div>
+
+  <div class="btn-wrapper">QR WhatsApp</div>
+  <div class="btn-wrapper">تحميل بطاقة الاتصال</div>
+</div>
+
+<!-- دوائر متحركة حوالين النصوص -->
+<script>
+  const container = document.querySelector('.container');
+  const createBubble = () => {
+    const b = document.createElement('div');
+    b.classList.add('bubble');
+    const size = Math.random() * 60 + 20;
+    b.style.width = size + 'px';
+    b.style.height = size + 'px';
+    b.style.left = Math.random() * container.offsetWidth + 'px';
+    b.style.top = Math.random() * container.offsetHeight + 'px';
+    b.style.animationDuration = (Math.random() * 5 + 5) + 's';
+    container.appendChild(b);
+    setTimeout(() => container.removeChild(b), 10000);
+  };
+
+  setInterval(createBubble, 500);
+</script>
+
+<!-- نجوم الخلفية -->
+<script>
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+
+  function resize() {
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = w;
+    canvas.height = h;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  class Star {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.size = Math.random() * 1.5 + 0.5;
+      this.speed = Math.random() * 0.5 + 0.1;
+      this.opacity = Math.random() * 0.5 + 0.5;
+      this.opacityChange = (Math.random() * 0.01) * (Math.random() < 0.5 ? 1 : -1);
+    }
+    update() {
+      this.y += this.speed;
+      this.opacity += this.opacityChange;
+
+      if (this.opacity <= 0.3 || this.opacity >= 1) this.opacityChange = -this.opacityChange;
+      if (this.y > h) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+      ctx.shadowColor = "white";
+      ctx.shadowBlur = 5;
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  const stars = [];
+  for (let i = 0; i < 150; i++) stars.push(new Star());
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    stars.forEach(s => { s.update(); s.draw(); });
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
 
 </body>
 </html>
